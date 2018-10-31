@@ -125,9 +125,7 @@ class AuditService @Inject() (val auditConnector: AuditConnector) {
       detail = detail)
   }
 
-  private def send(events: DataEvent*)(
-    implicit
-    hc: HeaderCarrier): Future[Unit] =
+  private def send(events: DataEvent*)(implicit hc: HeaderCarrier): Future[Unit] =
     Future {
       events.foreach { event =>
         Try(auditConnector.sendEvent(event))

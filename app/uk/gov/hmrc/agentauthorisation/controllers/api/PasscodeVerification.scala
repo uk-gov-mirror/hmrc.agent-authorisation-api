@@ -70,9 +70,7 @@ class FrontendPasscodeVerification @Inject() (
     throw new PasscodeVerificationException(
       s"The value for the key '$configKey' should be setup in the config file.")
 
-  def addRedirectUrl[A](token: String)(
-    implicit
-    request: Request[A]): Result => Result =
+  def addRedirectUrl[A](token: String)(implicit request: Request[A]): Result => Result =
     e =>
       e.addingToSession(SessionKeys.redirect -> buildRedirectUrl(request))
         .addingToSession("otacTokenParam" -> token)
